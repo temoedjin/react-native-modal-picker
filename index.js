@@ -54,16 +54,18 @@ const defaultProps = {
 
 export default class ModalPicker extends BaseComponent {
 
-    constructor() {
+    constructor(props) {
 
-        super();
+        super(props);
 
-        this._bind(
-            'onChange',
-            'open',
-            'close',
-            'renderChildren'
-        );
+      console.log('DDD binding onChange');
+      this.onChange = this.onChange.bind(this);
+      this.open = this.open.bind(this);
+      this.renderChildren = this.renderChildren.bind(this);
+      this.close = this.close.bind(this);
+      this.renderOptionList = this.renderOptionList.bind(this);
+      this.renderOption = this.renderOption.bind(this);
+      this.renderSection = this.renderSection.bind(this);
 
         this.state = {
             animationType: 'slide',
@@ -132,7 +134,7 @@ export default class ModalPicker extends BaseComponent {
             <View style={[styles.overlayStyle, this.props.overlayStyle]} key={'modalPicker'+(componentIndex++)}>
                 <View style={styles.optionContainer}>
                     <ScrollView keyboardShouldPersistTaps="always">
-                        <View style={{paddingHorizontal:10}}>
+                        <View style={ { paddingHorizontal:10 } }>
                             {options}
                         </View>
                     </ScrollView>
